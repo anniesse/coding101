@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<body>
+
+<canvas id="myChart" style="width:100%;max-width:1200px"></canvas>
+
+<script>
+var xValues = ["1. Winnipeg Jets", "2. Washington Capitals", "3. Dallas Stars", "4. Vegas Golden Knights", "5. Toronto Maple Leafs", "6. Colorado Avalanche", "7. LA Kings", "8. Carolina Hurricanes", "9. Tampa Bay Lightning", "10. Edmonton Oilers"];
+var yValues = [5, 5, 3, 2, 4, 6, 5, 3, 0, 8];
+var barColors = ["#00346e", "#ac0000","#1fac00","#dace35","#0049ff", "#E37383", "#36454F", "#EE4B2B", "#4682B4", "#F28C28"];
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "NHL Rankings vs. Injuries"
+    }
+  }
+});
+</script>
+
+</body>
+</html>
