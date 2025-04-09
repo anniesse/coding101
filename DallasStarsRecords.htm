@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dallas Stars Regular Season Records</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333; /* Dark grey color for the heading */
+            margin-bottom: 20px;
+        }
+        canvas {
+            max-width: 100%;
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Dallas Stars Regular Season Records</h1>
+<canvas id="myChart"></canvas>
+
+<script>
+    // Dallas Stars' regular season records for the past 5 seasons (including Overtime Losses)
+    const seasons = ['2024-25', '2023-24', '2022-23', '2021-22', '2020-21'];
+    const wins = [42, 52, 47, 46, 23]; // Wins for each season
+    const losses = [20, 29, 28, 23, 15]; // Losses for each season
+    const otLosses = [2, 1, 7, 3, 6]; // Overtime Losses for each season
+
+    // Chart.js configuration
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar', // Bar chart to represent wins, losses, and overtime losses
+        data: {
+            labels: seasons, // Seasons as labels
+            datasets: [{
+                label: 'Wins',
+                data: wins,
+                backgroundColor: 'rgba(144, 238, 144, 0.6)', // Very light green color for wins
+                borderColor: 'rgba(144, 238, 144, 1)', // Border color for wins
+                borderWidth: 1
+            },
+            {
+                label: 'Losses',
+                data: losses,
+                backgroundColor: 'rgba(0, 128, 0, 0.6)', // Dark green for losses
+                borderColor: 'rgba(0, 128, 0, 1)', // Dark green border for losses
+                borderWidth: 1
+            },
+            {
+                label: 'Overtime Losses',
+                data: otLosses,
+                backgroundColor: 'rgba(34, 139, 34, 0.6)', // Medium green for overtime losses
+                borderColor: 'rgba(34, 139, 34, 1)', // Medium green border for overtime losses
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true // Start the y-axis from zero
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
